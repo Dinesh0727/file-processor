@@ -38,7 +38,7 @@ public class RedisController {
                 Thread.sleep(100);
                 String text = messages.get(i).toString();
                 jedis.hset(messageHash, String.valueOf(messages.get(i).getId()), text);
-                jedis.zadd(cleanupSet, System.currentTimeMillis() / 1000 + 60 * i,
+                jedis.zadd(cleanupSet, System.currentTimeMillis() / 1000 + 1,
                         String.valueOf(messages.get(i).getId()));
             }
         }
@@ -46,9 +46,12 @@ public class RedisController {
         return "Called the Redis Service Function";
     }
 
-    @Scheduled(fixedDelay = 20000, initialDelay = 30000)
-    public void scheduledRedisCleanUp() throws InterruptedException {
-        System.out.println(this.callRedisService());
+    @Scheduled(fixedDelay = 60000, initialDelay = 60000)
+    public void mysqlToRedisScheduler() {
+        // 1. Alter table schema with extra attribute modified time. Fetch all and
+        // filter in server
+        // 2. Write a custom query in the JpaRepository, fetch the updated entries and
+        // update in redis
     }
 
 }

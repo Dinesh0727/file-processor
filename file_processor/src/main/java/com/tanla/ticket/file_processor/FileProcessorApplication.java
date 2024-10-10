@@ -10,10 +10,12 @@ import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import com.tanla.ticket.file_processor.rabbitmq.Receiver;
 
 @SpringBootApplication
+@EnableScheduling
 public class FileProcessorApplication {
 
 	public static final String topicExchangeName = "spring-boot-exchange";

@@ -9,8 +9,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tanla.ticket.file_processor.model.Message;
 import com.tanla.ticket.file_processor.service.MessageService;
 
-import redis.clients.jedis.JedisPool;
-
 @Component
 public class Receiver {
     // Didn't implement the latchDown here, because we work with only one thread and
